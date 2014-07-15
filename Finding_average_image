@@ -1,0 +1,42 @@
+#include "opencv2/opencv.hpp"
+#include <fstream>
+#include <opencv2/core/core.hpp>
+#include <iostream>
+#include <string>
+ #include <sstream>
+
+using namespace cv;
+using namespace std;
+
+int main()
+{
+
+	/* FileStorage fs;
+	    fs.open("model_xml_10.xml", FileStorage::READ);
+
+	Mat mean_vec;
+	     fs["mean"] >> mean_vec;
+	     mean_vec=mean_vec.reshape(0,112);
+*/
+	Mat sum(112,92,CV_64FC1,Scalar(0));
+	int num_folders=5;
+	int num_images_per_folder=10;
+	//cout<<sum<<endl;
+for(int j=1;j<=num_folders;j++)
+{
+	for(int i=1;i<=num_images_per_folder;i++)
+{
+		stringstream ss;
+		ss << "at/s"<<j<<"/"<< i<<".pgm";
+           Mat a=imread(ss.str(),0);
+           a.convertTo(a,6);
+           sum=a+sum;
+         //imshow("result",a);
+         // waitKey(0);
+}}
+        sum=(sum)/(num_folders*num_images_per_folder);
+        //cout<<sum-mean_vec;
+        cout<<sum;
+
+      return 0;
+}
