@@ -1,0 +1,5 @@
+/usr/local/cuda-6.0/bin/nvcc -I/usr/local/include/opencv -I/usr/local/include/opencv2 -G -g -O0 -gencode arch=compute_20,code=sm_20 -gencode arch=compute_20,code=sm_21 --target-cpu-architecture x86 -m64 -odir "src" -M -o "src/PCB_testing_GPU.d" "src/PCB_testing_GPU.cu"
+
+/usr/local/cuda-6.0/bin/nvcc --compile -G -I/usr/local/include/opencv -I/usr/local/include/opencv2 -O0 -g -gencode arch=compute_20,code=compute_20 -gencode arch=compute_20,code=sm_21 --target-cpu-architecture x86 -m64  -x cu -o  "src/PCB_testing_GPU.o" "src/PCB_testing_GPU.cu"
+
+/usr/local/cuda-6.0/bin/nvcc --cudart static -L/usr/local/lib --target-cpu-architecture x86 -m64 -link -o  "PCB_testing_GPU"  ./src/PCB_testing_GPU.o   -lopencv_core  -lopencv_gpu -lopencv_imgproc  -lopencv_highgui  -lopencv_ml  -lopencv_video  -lopencv_features2d  -lopencv_calib3d  -lopencv_objdetect  -lopencv_contrib  -lopencv_legacy  -lopencv_flann
