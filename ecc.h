@@ -20,7 +20,7 @@
 #include<opencv\cxcore.h>
 
 enum WARP_MODE
-{
+{ 
 	WARP_MODE_TRANSLATION,
 	WARP_MODE_EUCLIDEAN,
 	WARP_MODE_AFFINE,
